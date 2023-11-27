@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ROUBA_MONTES
+class Jogador
 {
-    internal class Class1
-    {
-    }
+    string Nome;
+    int Posicao;
+    int QuantidadeCartasEmMao;
+    List<Carta> CartasEmMao;
+    Stack<Carta> CartasNoMonte;
+    List<string> RankingPessoalPorPartida;
 }

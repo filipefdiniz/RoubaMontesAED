@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ROUBA_MONTES
+﻿class Carta
 {
-    internal class Class1
+    public int Numero { get; set; }
+    public string Naipe { get; set; }
+
+    public Carta(int numero, string naipe)
     {
+        Numero = numero;
+        Naipe = naipe;
     }
 }
