@@ -122,19 +122,23 @@ class Jogo
             //Verificação para achar o jogador escolhido que terá seu monte roubado
             if(jogadorRoubado.Id == idJogador)
             {
+                Console.WriteLine("jogador = jogador por parametro");
                 if (jogadorRoubado.CartasNoMonte.Count > 0)
                 {
+                    Console.WriteLine("cartas no monte > 0");
                     //Verificar se a carta da vez é igual a carta do topo do monte a ser roubado
-                    if (cartaDaVez == jogadorRoubado.RetornarCartaDoTopo())
+                    if (cartaDaVez.Valor == jogadorRoubado.RetornarCartaDoTopo())
                     {
+                        Console.WriteLine("existe a carta no monte do outro jogador");
                         //Empilhar as cartas do monte a ser roubado em um monte temporário
-                        foreach (Carta carta in jogadorRoubado.CartasNoMonte)
+                        foreach (Carta carta in jogadorRoubado.CartasNoMonte.ToArray())
                         {
+                            Console.WriteLine("entrou aqui sim");
                             MonteTemp.Push(jogadorRoubado.CartasNoMonte.Pop());
                         }
 
                         //Empilhar as cartas do monte temporário no monte da pessoa que o roubou
-                        foreach (Carta carta in MonteTemp)
+                        foreach (Carta carta in MonteTemp.ToArray()) 
                         {
                             jogadorDaVez.CartasNoMonte.Push(MonteTemp.Pop());
                         }
@@ -164,6 +168,7 @@ class Jogo
                 int posicaoCarta = AreaDeDescarte.IndexOf(carta);
                 jogadorDaVez.CartasNoMonte.Push(AreaDeDescarte[posicaoCarta]);
                 AreaDeDescarte.RemoveAt(posicaoCarta);
+                jogadorDaVez.CartasNoMonte.Push(cartaDaVez);
                 cartaDaVez = MonteDeCompras.Pop();
                 return true;
             }

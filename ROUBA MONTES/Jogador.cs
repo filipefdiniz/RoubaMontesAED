@@ -23,7 +23,7 @@ class Jogador
         Console.Write($"ID: {Id} | ");
         Console.Write($"Jogador {Nome} | ");
         if (CartasNoMonte.Count > 0) {
-            Carta carta = RetornarCartaDoTopo();
+            Carta carta = CartasNoMonte.Peek();
             Console.WriteLine($"Carta do topo: {carta.Valor} {carta.Naipe} | ");
          }
         else
@@ -34,10 +34,10 @@ class Jogador
 
     }
 
-    public Carta RetornarCartaDoTopo()
+    public string RetornarCartaDoTopo()
     {
         Carta cartaTopo = CartasNoMonte.Peek();
-        return cartaTopo;
+        return cartaTopo.Valor;
     }
 
  
