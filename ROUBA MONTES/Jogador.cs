@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 class Jogador
 {
-    string Nome;
+    public string Nome;
     int Posicao;
-    int QuantidadeCartasEmMao;
-    List<Carta> CartasEmMao;
+    Carta CartaEmMao;
     Stack<Carta> CartasNoMonte;
+    int QuantidadeCartasMonte;
     List<string> RankingPessoalPorPartida;
+
+    public Jogador(string nome)
+    {
+        this.Nome = nome;
+    }
 }

@@ -1,11 +1,19 @@
 ﻿class Carta
 {
-    public int Numero { get; set; }
-    public string Naipe { get; set; }
-
-    public Carta(int numero, string naipe)
+    public string Valor;
+    public char Naipe;
+    public Carta(string valor, char naipe)
     {
-        Numero = numero;
-        Naipe = naipe;
+        this.Valor = valor;
+        this.Naipe = naipe;
+
     }
+
+
+    /**
+     Metodo que inicializa o baralho do jogo
+    */
+
+
+
 }
