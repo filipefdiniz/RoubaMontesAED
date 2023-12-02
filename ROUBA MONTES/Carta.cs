@@ -8,6 +8,12 @@
         this.Naipe = naipe;
 
     }
+    public Carta()
+    {
+        this.Valor = "n";
+        this.Naipe = 'n';
+
+    }
 
 
     /**

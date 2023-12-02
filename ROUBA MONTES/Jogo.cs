@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
 
 class Jogo
 {
@@ -7,76 +8,176 @@ class Jogo
     Baralho Baralho;
     Stack<Carta> MonteDeCompras;
     List<Carta> AreaDeDescarte;
+    Carta cartaDaVez;
+
     public Jogo()
     {
         this.Jogadores = new Queue<Jogador>();
         this.Baralho = new Baralho();
         this.MonteDeCompras = new Stack<Carta>();
         this.AreaDeDescarte = new List<Carta>();
+        this.cartaDaVez = new Carta();
     }
-    public Jogo(Queue<Jogador> jogadores, Baralho baralho, Stack<Carta> monte, List<Carta> area)
+    public Jogo(Queue<Jogador> jogadores, Baralho baralho, Stack<Carta> monte, List<Carta> area, Carta primeiraCarta)
     {
         this.Jogadores = jogadores;
         this.Baralho = baralho;
         this.MonteDeCompras = monte;
         this.AreaDeDescarte = area;
-
-    }
-    public Jogo CriarJogo()
-    {
-        Console.Write("Insira a quantidade de joagdores: ");
-        int quantidadeJogadores = int.Parse(Console.ReadLine());
-
-        //Fila da ordem de jogadores
-        Queue<Jogador> JogadoresDaPartida = new Queue<Jogador>(); // Criando fila
-
-        for (int i = 0; i < quantidadeJogadores; i++)
-        {
-            Console.Write("Insira o nome do jogador: ");
-            string nomeJogador = Console.ReadLine();
-
-            Jogador jogador = new Jogador(nomeJogador);
-            JogadoresDaPartida.Enqueue(jogador);
-        }
-
-        //Inserir quantidade de baralhos
-        Console.Write("Insira a quantidade de baralhos que deseja utilizar na partida: ");
-        int quantidadeBaralhos = int.Parse(Console.ReadLine());
-
-        //Criar um baralho 
-        Baralho baralho = new Baralho();
-        List<Carta> lista = baralho.CriarBaralho(quantidadeBaralhos);
-
-        //Inserir as cartas do baralho no monte de compras
-        Stack<Carta> monte = new Stack<Carta>();
-        foreach (Carta carta in lista)
-        {
-            monte.Push(carta);
-        }
-
-        //Limpar a lista de cartas (as cartas estão inseridas na pilha)
-        Baralho.baralho.Clear();
-
-        //Inserir 4 cartas iniciais na area de descarte
-        List<Carta> area = new List<Carta>();
-        for (int i = 0; i < 4; i++)
-        {
-            area.Add(monte.Pop());
-        }
-
-        //Instanciar um novo jogo
-        Jogo novoJogo = new Jogo(JogadoresDaPartida, baralho, monte, area);
-
-       
-
-        baralho.Imprimir();
-        novoJogo.Imprimir();
-
-        return novoJogo;
-
+        this.cartaDaVez = primeiraCarta;
     }
     
+    public void Jogar()
+    {
+        do
+        {
+            //Mostrar jogador
+            Jogadas();
+ 
 
+        }
+        while (MonteDeCompras.Count == 0);
+
+        //FinalizarJogo();
+    }
+
+    public void Jogadas()
+    {
+        
+        Jogador jogadorDaVez = Jogadores.Dequeue();
+        Console.WriteLine($"Jogador da vez: {jogadorDaVez.Nome}");
+
+
+        //Comprar uma carta do monte
+
+        MenuDeAcoes(jogadorDaVez);       
+    }
+
+    public void MenuDeAcoes(Jogador jogadorDaVez)
+    {
+        Console.WriteLine($"Carta da vez: {cartaDaVez.Valor} {cartaDaVez.Naipe}");
+
+        //Mostrar área de descarte atual
+        Console.WriteLine("Área de descarte: ");
+        foreach (Carta carta in AreaDeDescarte)
+        {
+            Console.Write(carta.Valor + carta.Naipe + " | ");
+        }
+        Console.WriteLine();
+        //Retornar informações dos jogadores na rodada atual
+        Console.WriteLine("Monte dos jogadores: ");
+        foreach (Jogador jogador in Jogadores)
+        {
+            jogador.RetornarInfo();
+            Console.WriteLine();
+        }
+        
+
+        Console.WriteLine();
+        Console.WriteLine(
+                "OPÇÕES DE AÇÃO\r\n" +
+                "1 - Roubar monte de um jogador\r\n" +
+                "2 - Roubar da mesa\r\n" +
+                "3 - Descartar uma carta ");
+
+        int opcao = int.Parse(Console.ReadLine());
+
+        switch (opcao)
+        {
+            case 1:
+                Console.WriteLine("Qual jogador você quer roubar a carta do monte? ");
+                int idJogadorRoubado = int.Parse(Console.ReadLine());
+                RoubarDoMonteDeJogador(idJogadorRoubado, jogadorDaVez);
+                break;
+            case 2:
+                if (RoubarDaAreaDescarte(jogadorDaVez))
+                {
+                    Console.WriteLine("Roubo da área de descarte feito com sucesso. Jogue novamente!");
+                    MenuDeAcoes(jogadorDaVez);
+                }
+                else
+                {
+                    Console.WriteLine("Carta não esta contida na área de descarte, tente novamente!");
+                    MenuDeAcoes(jogadorDaVez);
+                }
+                break;
+            case 3:
+                DescartarCarta(jogadorDaVez);
+                
+                break;
+            default:
+                Console.WriteLine("Opção inválida");
+                break;
+        }
+    }
+
+    public void RoubarDoMonteDeJogador(int idJogador, Jogador jogadorDaVez)
+    {
+        //Monte temporário
+        Stack<Carta> MonteTemp = new Stack<Carta>();
+
+        //Percorrer fila de jogadores
+        foreach (Jogador jogadorRoubado in Jogadores)
+        {
+            //Verificação para achar o jogador escolhido que terá seu monte roubado
+            if(jogadorRoubado.Id == idJogador)
+            {
+                if (jogadorRoubado.CartasNoMonte.Count > 0)
+                {
+                    //Verificar se a carta da vez é igual a carta do topo do monte a ser roubado
+                    if (cartaDaVez == jogadorRoubado.RetornarCartaDoTopo())
+                    {
+                        //Empilhar as cartas do monte a ser roubado em um monte temporário
+                        foreach (Carta carta in jogadorRoubado.CartasNoMonte)
+                        {
+                            MonteTemp.Push(jogadorRoubado.CartasNoMonte.Pop());
+                        }
+
+                        //Empilhar as cartas do monte temporário no monte da pessoa que o roubou
+                        foreach (Carta carta in MonteTemp)
+                        {
+                            jogadorDaVez.CartasNoMonte.Push(MonteTemp.Pop());
+                        }
+
+                        //Colocar a carta da vez no topo do monte da pessoa que roubou
+                        jogadorDaVez.CartasNoMonte.Push(cartaDaVez);
+                        MenuDeAcoes(jogadorDaVez);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Jogador {jogadorRoubado.Nome} está sem cartas no monte. Escolha outro!");
+                    MenuDeAcoes(jogadorDaVez);
+                }
+            }
+        }
+    }
+    public bool RoubarDaAreaDescarte(Jogador jogadorDaVez)
+    {
+        string valorCarta = cartaDaVez.Valor;
+
+        foreach (Carta carta in AreaDeDescarte)
+        {
+            if (carta.Valor == valorCarta)
+            {
+                Console.WriteLine("entrou");
+                int posicaoCarta = AreaDeDescarte.IndexOf(carta);
+                jogadorDaVez.CartasNoMonte.Push(AreaDeDescarte[posicaoCarta]);
+                AreaDeDescarte.RemoveAt(posicaoCarta);
+                cartaDaVez = MonteDeCompras.Pop();
+                return true;
+            }
+        }
+        return false;     
+    }
+    public void DescartarCarta(Jogador jogadorDaVez)
+    {
+        AreaDeDescarte.Add(cartaDaVez);
+        cartaDaVez = MonteDeCompras.Pop();
+        //Voltar com o jogador da vez para o final da fila
+        Jogadores.Enqueue(jogadorDaVez);
+        Jogadas();
+    }
     public void Imprimir()
     {
         foreach(Jogador Jogador in Jogadores)
@@ -91,10 +192,7 @@ class Jogo
         }
 
         Console.WriteLine("Area de descarte");
-        foreach (Carta carta in AreaDeDescarte)
-        {
-            Console.Write(carta.Valor + carta.Naipe + " | ");
-        }
+        
 
     }
 
