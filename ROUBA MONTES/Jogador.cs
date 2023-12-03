@@ -128,21 +128,22 @@ class Jogador
     {
         for (int i = 0; i < (vetor.Length - 1); i++)
         {
-            int indiceMax = i;
-            for (int j = (i + 1); j > vetor.Length; j++)
+            int indiceMin = i;
+            for (int j = (i + 1); j < vetor.Length; j++)
             {
-                if (int.Parse(vetor[indiceMax].Valor) > int.Parse(vetor[j].Valor))
+                if (int.Parse(vetor[indiceMin].Valor) > int.Parse(vetor[j].Valor))
                 {
-                    indiceMax = j;
+                    indiceMin = j;
                 }
             }
-            if (indiceMax != i)
+            if (indiceMin != i)
             {
-                Carta temp = vetor[indiceMax];
-                vetor[indiceMax] = vetor[i];
+                Carta temp = vetor[indiceMin];
+                vetor[indiceMin] = vetor[i];
                 vetor[i] = temp;
             }
         }
     }
+
 
 }

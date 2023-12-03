@@ -305,6 +305,9 @@ class Jogo
     //Metodo para quando o jogo acabar
     public void FinalizarJogo()
     {
+        //A
+        //diciona na area de descarte
+        AreaDeDescarte.Add(cartaDaVez);
         //Ordenar o ranking final
         Jogador[] RankingFinal = Jogadores.ToArray();
         SelectionSort(RankingFinal);
@@ -330,9 +333,14 @@ class Jogo
         //    //    CartasDoGanhador.Add(CartasDaMao);
         //    //}
         //}
-
+        Console.Clear();
+        ImprimirTituloJogo();
+        Console.WriteLine();
+        Console.WriteLine("=====================");
         Console.WriteLine("==== FIM DE JOGO ====");
+        Console.WriteLine("=====================\n");
 
+        Console.WriteLine("Cartas Na Mesa: " + AreaDeDescarte.Count);
         //Exibir ranking Final
         Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[0].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[0].CartasNoMonte.Count}");
         Console.Write("Cartas ordenadas: | ");
