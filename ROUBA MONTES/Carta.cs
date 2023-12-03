@@ -14,12 +14,4 @@
         this.Naipe = 'n';
 
     }
-
-
-    /**
-     Metodo que inicializa o baralho do jogo
-    */
-
-
-
 }

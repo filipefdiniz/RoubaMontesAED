@@ -1,16 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 class Program
 {
     public static void Main(string[] args)
     {
-        //Instanciar novo jogo
-        Jogo Jogo = CriarJogo();
+        ImprimirTituloJogo();
 
-        Jogo.Jogar();
+        Console.WriteLine("==== LET'S PLAY! ====");
+        Console.WriteLine("1 - INICIAR UM JOGO");
+        Console.WriteLine("2 - VER HISTRÓRICO");
+        Console.Write("Digite a opção desejada: ");
+        int opcao = int.Parse(Console.ReadLine());
+
+        switch (opcao)
+        {
+            case 1:
+                //Instanciar novo jogo
+                Jogo Jogo = CriarJogo();
+                //Iniciar o jogo depois de ter sido instanciado
+                Jogo.Jogar();
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+        
 
 
 
@@ -18,7 +37,7 @@ class Program
         //Método para criar um novo jogo - Jogadores - Distribuição de cartas - Monte de compras
         static Jogo CriarJogo()
         {
-            Console.Write("Insira a quantidade de joagdores: ");
+            Console.Write("Quantidade de joagadores: ");
             int quantidadeJogadores = int.Parse(Console.ReadLine());
 
             //Fila da ordem de jogadores
@@ -26,7 +45,7 @@ class Program
 
             for (int i = 1; i <= quantidadeJogadores; i++)
             {
-                Console.Write("Insira o nome do jogador: ");
+                Console.Write($"Insira o nome do jogador{i}: ");
                 string nomeJogador = Console.ReadLine();
 
                 Jogador jogador = new Jogador(i, nomeJogador);
@@ -34,7 +53,7 @@ class Program
             }
 
             //Inserir quantidade de baralhos
-            Console.Write("Insira a quantidade de baralhos que deseja utilizar na partida: ");
+            Console.Write("Quantidade de baralhos para a partida: ");
             int quantidadeBaralhos = int.Parse(Console.ReadLine());
 
             //Criar um baralho 
@@ -60,13 +79,30 @@ class Program
             Carta primeiraCarta = monte.Pop();
             //Instanciar um novo jogo
             Jogo novoJogo = new Jogo(JogadoresDaPartida, baralho, monte, area, primeiraCarta);
-
-            baralho.Imprimir();
+            
+            Console.Clear();
             novoJogo.Imprimir();
 
             return novoJogo;
 
         }
+
+        static void ImprimirTituloJogo()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(@"
+██████╗░░█████╗░██╗░░░██╗██████╗░░█████╗░  ███╗░░░███╗░█████╗░███╗░░██╗████████╗███████╗░██████╗
+██╔══██╗██╔══██╗██║░░░██║██╔══██╗██╔══██╗  ████╗░████║██╔══██╗████╗░██║╚══██╔══╝██╔════╝██╔════╝
+██████╔╝██║░░██║██║░░░██║██████╦╝███████║  ██╔████╔██║██║░░██║██╔██╗██║░░░██║░░░█████╗░░╚█████╗░
+██╔══██╗██║░░██║██║░░░██║██╔══██╗██╔══██║  ██║╚██╔╝██║██║░░██║██║╚████║░░░██║░░░██╔══╝░░░╚═══██╗
+██║░░██║╚█████╔╝╚██████╔╝██████╦╝██║░░██║  ██║░╚═╝░██║╚█████╔╝██║░╚███║░░░██║░░░███████╗██████╔╝
+╚═╝░░╚═╝░╚════╝░░╚═════╝░╚═════╝░╚═╝░░╚═╝  ╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═════╝░");
+            Console.ResetColor();
+            Console.WriteLine("=================================================================================================");
+            Console.WriteLine("=================================================================================================");
+
+        }
+
 
     }
     

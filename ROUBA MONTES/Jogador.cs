@@ -18,22 +18,34 @@ class Jogador
         this.RankingPessoalPorPartida = new List<string>();
     }
 
+    //==================================================================
+    //Método para retornar informações atualizadas do jogador na rodada.
     public void RetornarInfo()
     {
         Console.Write($"ID: {Id} | ");
         Console.Write($"Jogador {Nome} | ");
+
+        //Verifica se possui cartas no monte
         if (CartasNoMonte.Count > 0) {
             Carta carta = CartasNoMonte.Peek();
-            Console.WriteLine($"Carta do topo: {carta.Valor} {carta.Naipe} | ");
-         }
+            Console.Write($"Carta do topo: ");
+            Console.Write($"{ carta.Valor}");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{carta.Naipe}");
+            Console.ResetColor();
+        }
         else
         {
-            Console.Write("Monte vazio! | ");
-        }
-        Console.Write($"Quantidade de cartas no monte: {CartasNoMonte.Count}");
-
+            Console.Write("Monte vazio!");
+        }        
+        Console.Write($" | Quantidade de cartas no monte: ");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write($"{CartasNoMonte.Count}");
+        Console.ResetColor();
     }
 
+    //==============================================
+    //Método para retornar o valor da carta do topo. 
     public string RetornarCartaDoTopo()
     {
         Carta cartaTopo = CartasNoMonte.Peek();
