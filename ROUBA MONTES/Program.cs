@@ -16,7 +16,7 @@ class Program
         Console.WriteLine("==== LET'S PLAY! ====");
         Console.ResetColor();
         Console.WriteLine("1 - INICIAR UM JOGO");
-        Console.WriteLine("2 - VER HISTRÓRICO");
+        Console.WriteLine("2 - VER HISTÓRICO");
         Console.WriteLine("======================");
         Console.Write("Digite a opção desejada: "); 
         int opcao = int.Parse(Console.ReadLine());
@@ -35,10 +35,6 @@ class Program
                 break;
         }
         
-
-
-
-
         //Método para criar um novo jogo - Jogadores - Distribuição de cartas - Monte de compras
         static Jogo CriarJogo()
         {

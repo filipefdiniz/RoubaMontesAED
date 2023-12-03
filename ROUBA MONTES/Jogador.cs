@@ -8,7 +8,6 @@ class Jogador
     public Stack<Carta> CartasNoMonte;
     List<string> RankingPessoalPorPartida;
 
-    
     public Jogador(int id, string nome)
     {
         this.Id = id;

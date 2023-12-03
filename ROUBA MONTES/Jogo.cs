@@ -172,6 +172,14 @@ class Jogo
 
                         //Colocar a carta da vez no topo do monte da pessoa que roubou
                         jogadorDaVez.CartasNoMonte.Push(cartaDaVez);
+                        if (MonteDeCompras.Count > 0)
+                        {
+                            cartaDaVez = MonteDeCompras.Pop();
+                        }
+                        else
+                        {
+                            FinalizarJogo();
+                        }
 
                         Console.Clear();
                         ImprimirTituloJogo();
@@ -239,8 +247,14 @@ class Jogo
                 jogadorDaVez.CartasNoMonte.Push(cartaDaVez);
 
                 //Atualiza a carta da vez
-                cartaDaVez = MonteDeCompras.Pop();
-
+                if(MonteDeCompras.Count > 0){
+                    cartaDaVez = MonteDeCompras.Pop();
+                }
+                else
+                {
+                    FinalizarJogo();
+                }
+                
                 return true;
             }
         }
@@ -255,7 +269,14 @@ class Jogo
         AreaDeDescarte.Add(cartaDaVez);
 
         //Atualizar a carta da vez - Comprada do monte de compras
-        cartaDaVez = MonteDeCompras.Pop();
+        if (MonteDeCompras.Count > 0)
+        {
+            cartaDaVez = MonteDeCompras.Pop();
+        }
+        else
+        {
+            FinalizarJogo();
+        }
 
         //Voltar com o jogador da vez para o final da fila
         Jogadores.Enqueue(jogadorDaVez);
@@ -266,11 +287,180 @@ class Jogo
         Rodadas();
     }
 
+    //Metodo para quando o jogo acabar
     public void FinalizarJogo()
     {
+        //Ordenar o ranking final
+        Jogador[] RankingFinal = Jogadores.ToArray();   
+        Quicksort(RankingFinal, 0, RankingFinal.Length - 1);
 
+        Carta[][] CartasDoGanhador = new Carta[Jogadores.Count][];
+        //Ordenar as cartas do(s) ganhador(es)
+        for (int i = 0, j = 1; j < RankingFinal.Length ; i++, j++)
+        {
+            if (i == 0)
+            {
+                Carta[] CartasDaMao = RankingFinal[i].CartasNoMonte.ToArray();
+                CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
+                Quicksort(CartasDaMao, 0, CartasDaMao.Length-1);
+                ConverterCartasNoMonteLetras(CartasDaMao);
+                CartasDoGanhador[i] = CartasDaMao;
+            }
+            if(RankingFinal[i].CartasNoMonte.Count == RankingFinal[j].CartasNoMonte.Count)
+            {
+                Carta[] CartasDaMao = RankingFinal[j].CartasNoMonte.ToArray();
+                CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
+                Quicksort(CartasDaMao, 0, CartasDaMao.Length - 1);
+                ConverterCartasNoMonteLetras(CartasDaMao);
+                CartasDoGanhador[i+1] = CartasDaMao;
+            }
+        }
+        
+        Console.WriteLine("==== FIM DE JOGO ====");
+
+        //Exibir ranking Final
+        Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[0].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[0].CartasNoMonte.Count}");
+        Console.Write("Cartas ordenadas: | ");
+        foreach(Carta carta in CartasDoGanhador[0])
+        {
+            Console.Write(carta.Valor);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(carta.Naipe);
+            Console.ResetColor();
+            Console.WriteLine(" | ");
+        }   
+
+        if (CartasDoGanhador.Length > 1)
+        {           
+            for (int i = 1; i < CartasDoGanhador.Length; i++)
+            {
+                Console.WriteLine("Empate!");
+                Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
+                Console.Write("Cartas ordenadas: | ");
+                for (int j = 0; j < CartasDoGanhador[j].Length; j++)
+                {
+                    Console.Write(CartasDoGanhador[i][j].Valor);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(CartasDoGanhador[i][j].Naipe);
+                    Console.ResetColor();
+                    Console.WriteLine(" | ");
+                }
+            }
+        }
+        
+        for(int i = CartasDoGanhador.Length; i < RankingFinal.Length-1; i++ )
+        {
+          Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
+        }
+        
     }
 
+    public Carta[] ConverterCartasNoMonte(Carta[] cartas)
+    {
+        foreach (Carta carta in cartas)
+        {
+            if (carta.Valor == "A")
+            {
+                carta.Valor = "1";
+            }
+            if (carta.Valor == "J")
+            {
+                carta.Valor = "11";
+            }
+            if (carta.Valor == "Q")
+            {
+                carta.Valor = "12";
+            }
+            if (carta.Valor == "K")
+            {
+                carta.Valor = "13";
+            }
+        }      
+        return cartas;
+    }
+
+    public Carta[] ConverterCartasNoMonteLetras(Carta[] cartas)
+    {
+        foreach (Carta carta in cartas)
+        {
+            if (carta.Valor == "1")
+            {
+                carta.Valor = "A";
+            }
+            if (carta.Valor == "11")
+            {
+                carta.Valor = "J";
+            }
+            if (carta.Valor == "12")
+            {
+                carta.Valor = "Q";
+            }
+            if (carta.Valor == "13")
+            {
+                carta.Valor = "K";
+            }
+        }
+        return cartas;
+    }
+    void Quicksort(Carta[] array, int esq, int dir)
+    {
+        int i = esq, j = dir;
+        int pivo = int.Parse(array[(esq + dir) / 2].Valor);
+        while (i <= j)
+        {
+            while (int.Parse(array[i].Valor) < pivo)
+                i++;
+            while (int.Parse(array[j].Valor) > pivo)
+                j--;
+            if (i <= j)
+            {
+                Trocar(array, i, j);
+                i++;
+                j--;
+            }
+        }
+        if (esq < j)
+            Quicksort(array, esq, j);
+        if (i < dir)
+            Quicksort(array, i, dir);
+    }
+    void Trocar(Carta[] array, int i, int j)
+    {
+        Carta temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    void Quicksort(Jogador[] array, int esq, int dir)
+    {
+        int i = esq, j = dir;
+        int pivo = array[(esq + dir) / 2].CartasNoMonte.Count;
+        while (i <= j)
+        {
+            while (array[i].CartasNoMonte.Count < pivo)
+                i++;
+            while (array[j].CartasNoMonte.Count > pivo)
+                j--;
+            if (i <= j)
+            {
+                Trocar(array, i, j);
+                i++;
+                j--;
+            }
+        }
+        if (esq < j)
+            Quicksort(array, esq, j);
+        if (i < dir)
+            Quicksort(array, i, dir);
+    }
+    void Trocar(Jogador[] array, int i, int j)
+    {
+        Jogador temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    //Imprimir titulo rouba montes estilizado
     static void ImprimirTituloJogo()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -290,6 +480,7 @@ class Jogo
         Console.WriteLine();
     }
 
+    //imprimir informações iniciais
     public void Imprimir()
     {
         ImprimirTituloJogo();
