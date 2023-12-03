@@ -36,7 +36,10 @@ class Jogador
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("Monte vazio!");
+            Console.ResetColor();
+
         }        
         Console.Write($" | Quantidade de cartas no monte: ");
         Console.ForegroundColor = ConsoleColor.Red;

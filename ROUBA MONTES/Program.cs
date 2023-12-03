@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -9,11 +10,15 @@ class Program
     public static void Main(string[] args)
     {
         ImprimirTituloJogo();
+        
 
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("==== LET'S PLAY! ====");
+        Console.ResetColor();
         Console.WriteLine("1 - INICIAR UM JOGO");
         Console.WriteLine("2 - VER HISTRÓRICO");
-        Console.Write("Digite a opção desejada: ");
+        Console.WriteLine("======================");
+        Console.Write("Digite a opção desejada: "); 
         int opcao = int.Parse(Console.ReadLine());
 
         switch (opcao)
@@ -37,7 +42,11 @@ class Program
         //Método para criar um novo jogo - Jogadores - Distribuição de cartas - Monte de compras
         static Jogo CriarJogo()
         {
-            Console.Write("Quantidade de joagadores: ");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("=== INSIRA OS DADOS PARA COMEÇAR A PARTIDA ===");
+            Console.ResetColor();
+            Console.Write("Quantidade de jogadores da partida: ");
             int quantidadeJogadores = int.Parse(Console.ReadLine());
 
             //Fila da ordem de jogadores
@@ -45,7 +54,7 @@ class Program
 
             for (int i = 1; i <= quantidadeJogadores; i++)
             {
-                Console.Write($"Insira o nome do jogador{i}: ");
+                Console.Write($"Insira o nome do {i}° Jogador: ");
                 string nomeJogador = Console.ReadLine();
 
                 Jogador jogador = new Jogador(i, nomeJogador);
@@ -89,6 +98,7 @@ class Program
 
         static void ImprimirTituloJogo()
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(@"
 ██████╗░░█████╗░██╗░░░██╗██████╗░░█████╗░  ███╗░░░███╗░█████╗░███╗░░██╗████████╗███████╗░██████╗
@@ -99,8 +109,10 @@ class Program
 ╚═╝░░╚═╝░╚════╝░░╚═════╝░╚═════╝░╚═╝░░╚═╝  ╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═════╝░");
             Console.ResetColor();
             Console.WriteLine("=================================================================================================");
-            Console.WriteLine("=================================================================================================");
-
+            Console.WriteLine("======================================= | \u2665 | \u2666 | \u2663 | \u2660 | =======================================");
+            
+            
+            Console.WriteLine();
         }
 
 

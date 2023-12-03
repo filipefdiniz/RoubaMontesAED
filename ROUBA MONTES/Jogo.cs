@@ -91,6 +91,10 @@ class Jogo
                 "1 - Roubar monte de um jogador\r\n" +
                 "2 - Roubar da mesa\r\n" +
                 "3 - Descartar uma carta ");
+        Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=");
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.Write("OPÇÃO DE JOGADA: ");
+        Console.ResetColor();
 
         int opcao = int.Parse(Console.ReadLine());
 
@@ -107,6 +111,7 @@ class Jogo
                 if (RoubarDaAreaDescarte(jogadorDaVez))
                 {
                     Console.Clear();
+                    ImprimirTituloJogo();
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                     Console.WriteLine("Roubo da área de descarte feito com sucesso. Jogue novamente!");
                     Console.ResetColor();
@@ -116,6 +121,7 @@ class Jogo
                 else
                 {
                     Console.Clear();
+                    ImprimirTituloJogo();
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Carta não esta contida na área de descarte, tente novamente!");
                     Console.ResetColor();
@@ -168,6 +174,7 @@ class Jogo
                         jogadorDaVez.CartasNoMonte.Push(cartaDaVez);
 
                         Console.Clear();
+                        ImprimirTituloJogo();
                         Console.Write($"Monte do jogador ");
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.Write($"{jogadorRoubado.Nome} ");
@@ -183,6 +190,7 @@ class Jogo
                     else
                     {
                         Console.Clear();
+                        ImprimirTituloJogo();
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("Sua carta da vez não é igual a carta do monte do jogador escolhido.Tente novamente!");
@@ -194,6 +202,7 @@ class Jogo
                 else //Verificação caso o jogador escolhido nao tenha cartas no monte
                 {
                     Console.Clear();
+                    ImprimirTituloJogo();
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine($"Jogador {jogadorRoubado.Nome} está sem cartas no monte. Tente novamente!");
                     Console.ResetColor();
@@ -252,6 +261,7 @@ class Jogo
         Jogadores.Enqueue(jogadorDaVez);
 
         Console.Clear();
+        ImprimirTituloJogo();
         //Reiniciar o menu para o próximo jogador realizar sua jogada
         Rodadas();
     }
@@ -261,17 +271,41 @@ class Jogo
 
     }
 
+    static void ImprimirTituloJogo()
+    {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine(@"
+██████╗░░█████╗░██╗░░░██╗██████╗░░█████╗░  ███╗░░░███╗░█████╗░███╗░░██╗████████╗███████╗░██████╗
+██╔══██╗██╔══██╗██║░░░██║██╔══██╗██╔══██╗  ████╗░████║██╔══██╗████╗░██║╚══██╔══╝██╔════╝██╔════╝
+██████╔╝██║░░██║██║░░░██║██████╦╝███████║  ██╔████╔██║██║░░██║██╔██╗██║░░░██║░░░█████╗░░╚█████╗░
+██╔══██╗██║░░██║██║░░░██║██╔══██╗██╔══██║  ██║╚██╔╝██║██║░░██║██║╚████║░░░██║░░░██╔══╝░░░╚═══██╗
+██║░░██║╚█████╔╝╚██████╔╝██████╦╝██║░░██║  ██║░╚═╝░██║╚█████╔╝██║░╚███║░░░██║░░░███████╗██████╔╝
+╚═╝░░╚═╝░╚════╝░░╚═════╝░╚═════╝░╚═╝░░╚═╝  ╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═════╝░");
+        Console.ResetColor();
+        Console.WriteLine("=================================================================================================");
+        Console.WriteLine("======================================= | \u2665 | \u2666 | \u2663 | \u2660 | =======================================");
+
+
+        Console.WriteLine();
+    }
+
     public void Imprimir()
     {
-        int i = 1;
+        ImprimirTituloJogo();
+        
         Console.WriteLine("=== Jogadores da rodada ===");
         foreach(Jogador Jogador in Jogadores)
         {
+            int i = 1;
             Console.WriteLine($"Jogador {i}: {Jogador.Nome} ");
             i++;
         }
-        
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("=-=-=-=-= JOGO INICIADO =-=-=-=-=-=");
+        Console.ResetColor();
+        Console.WriteLine();
 
     }
 
