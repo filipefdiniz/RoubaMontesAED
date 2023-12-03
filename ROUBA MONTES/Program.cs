@@ -9,32 +9,39 @@ class Program
 {
     public static void Main(string[] args)
     {
-        ImprimirTituloJogo();
-        
+        int opcao = 0;
 
-        Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine("==== LET'S PLAY! ====");
-        Console.ResetColor();
-        Console.WriteLine("1 - INICIAR UM JOGO");
-        Console.WriteLine("2 - VER HISTÓRICO");
-        Console.WriteLine("======================");
-        Console.Write("Digite a opção desejada: "); 
-        int opcao = int.Parse(Console.ReadLine());
-
-        switch (opcao)
+        do
         {
-            case 1:
-                //Instanciar novo jogo
-                Jogo Jogo = CriarJogo();
-                //Iniciar o jogo depois de ter sido instanciado
-                Jogo.Jogar();
-                break;
-            case 2:
-                break;
-            default:
-                break;
-        }
-        
+            Console.Clear();
+            ImprimirTituloJogo();
+
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("==== LET'S PLAY! ====");
+            Console.ResetColor();
+            Console.WriteLine("1 - INICIAR UM NOVO JOGO");
+            Console.WriteLine("2 - VER HISTÓRICO");
+            Console.WriteLine("3 - SAIR");
+            Console.WriteLine("======================");
+            Console.Write("Digite a opção desejada: ");
+            opcao = int.Parse(Console.ReadLine());
+
+            switch (opcao)
+            {
+                case 1:
+                    //Instanciar novo jogo
+                    Jogo Jogo = CriarJogo();
+                    //Iniciar o jogo depois de ter sido instanciado
+                    Jogo.Jogar();
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+        } while (opcao != 3);
+
         //Método para criar um novo jogo - Jogadores - Distribuição de cartas - Monte de compras
         static Jogo CriarJogo()
         {
@@ -84,7 +91,7 @@ class Program
             Carta primeiraCarta = monte.Pop();
             //Instanciar um novo jogo
             Jogo novoJogo = new Jogo(JogadoresDaPartida, baralho, monte, area, primeiraCarta);
-            
+
             Console.Clear();
             novoJogo.Imprimir();
 
@@ -106,12 +113,12 @@ class Program
             Console.ResetColor();
             Console.WriteLine("=================================================================================================");
             Console.WriteLine("======================================= | \u2665 | \u2666 | \u2663 | \u2660 | =======================================");
-            
-            
+
+
             Console.WriteLine();
         }
 
 
     }
-    
+
 }
