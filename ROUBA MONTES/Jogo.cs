@@ -291,70 +291,93 @@ class Jogo
     public void FinalizarJogo()
     {
         //Ordenar o ranking final
-        Jogador[] RankingFinal = Jogadores.ToArray();   
-        Quicksort(RankingFinal, 0, RankingFinal.Length - 1);
+            Jogador[] RankingFinal = Jogadores.ToArray();
+            SelectionSort(RankingFinal);
 
-        Carta[][] CartasDoGanhador = new Carta[Jogadores.Count][];
-        //Ordenar as cartas do(s) ganhador(es)
-        for (int i = 0, j = 1; j < RankingFinal.Length ; i++, j++)
-        {
-            if (i == 0)
+            List<Carta[]> CartasDoGanhador = new List<Carta[]>();
+            //Ordenar as cartas do(s) ganhador(es)
+            for (int i = 0, j = 1; j < RankingFinal.Length; i++, j++)
             {
-                Carta[] CartasDaMao = RankingFinal[i].CartasNoMonte.ToArray();
-                CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
-                Quicksort(CartasDaMao, 0, CartasDaMao.Length-1);
-                ConverterCartasNoMonteLetras(CartasDaMao);
-                CartasDoGanhador[i] = CartasDaMao;
-            }
-            if(RankingFinal[i].CartasNoMonte.Count == RankingFinal[j].CartasNoMonte.Count)
-            {
-                Carta[] CartasDaMao = RankingFinal[j].CartasNoMonte.ToArray();
-                CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
-                Quicksort(CartasDaMao, 0, CartasDaMao.Length - 1);
-                ConverterCartasNoMonteLetras(CartasDaMao);
-                CartasDoGanhador[i+1] = CartasDaMao;
-            }
-        }
-        
-        Console.WriteLine("==== FIM DE JOGO ====");
-
-        //Exibir ranking Final
-        Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[0].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[0].CartasNoMonte.Count}");
-        Console.Write("Cartas ordenadas: | ");
-        foreach(Carta carta in CartasDoGanhador[0])
-        {
-            Console.Write(carta.Valor);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(carta.Naipe);
-            Console.ResetColor();
-            Console.WriteLine(" | ");
-        }   
-
-        if (CartasDoGanhador.Length > 1)
-        {           
-            for (int i = 1; i < CartasDoGanhador.Length; i++)
-            {
-                Console.WriteLine("Empate!");
-                Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
-                Console.Write("Cartas ordenadas: | ");
-                for (int j = 0; j < CartasDoGanhador[j].Length; j++)
+                if (i == 0)
                 {
-                    Console.Write(CartasDoGanhador[i][j].Valor);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(CartasDoGanhador[i][j].Naipe);
-                    Console.ResetColor();
-                    Console.WriteLine(" | ");
+                    Carta[] CartasDaMao = RankingFinal[i].CartasNoMonte.ToArray();
+                    CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
+                    //Quicksort(CartasDaMao, 0, CartasDaMao.Length - 1);
+                    ConverterCartasNoMonteLetras(CartasDaMao);
+                    CartasDoGanhador.Add(CartasDaMao);
+            }
+                if (RankingFinal[i].CartasNoMonte.Count == RankingFinal[j].CartasNoMonte.Count)
+                {
+                    Carta[] CartasDaMao = RankingFinal[j].CartasNoMonte.ToArray();
+                    CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
+                    //Quicksort(CartasDaMao, 0, CartasDaMao.Length - 1);
+                    ConverterCartasNoMonteLetras(CartasDaMao);
+                    CartasDoGanhador.Add(CartasDaMao);
                 }
             }
-        }
+
+            Console.WriteLine("==== FIM DE JOGO ====");
+
+            //Exibir ranking Final
+            Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[0].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[0].CartasNoMonte.Count}");
+            Console.Write("Cartas ordenadas: | ");
+            foreach (Carta carta in CartasDoGanhador[0])
+            {
+                Console.Write(carta.Valor);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(carta.Naipe);
+                Console.ResetColor();
+                Console.WriteLine(" | ");
+            }
+
+            if (CartasDoGanhador.Count > 1)
+            {
+                for (int i = 1; i < RankingFinal.Length; i++)
+                {
+                    Console.WriteLine("Empate!");
+                    Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
+                    Console.Write("Cartas ordenadas: | ");
+                    for (int j = 0; j < CartasDoGanhador.Count; j++)
+                    {
+                        Carta[] carta = CartasDoGanhador[j];
+                        Console.Write(carta[j].Valor);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(carta[j].Naipe);
+                        Console.ResetColor();
+                        Console.WriteLine(" | ");
+                    }
+                }
+            }
+
+            for (int i = CartasDoGanhador.Count; i < RankingFinal.Length - 1; i++)
+            {
+                Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
+            }
         
-        for(int i = CartasDoGanhador.Length; i < RankingFinal.Length-1; i++ )
-        {
-          Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
-        }
         
     }
 
+
+    static void SelectionSort(Jogador[] vetor)
+    {
+        for (int i = 0; i < (vetor.Length - 1); i++)
+        {
+            int indiceMin = i;
+            for (int j = (i + 1); j < vetor.Length; j++)
+            {
+                if (vetor[indiceMin].CartasNoMonte.Count > vetor[j].CartasNoMonte.Count)
+                {
+                    indiceMin = j;
+                }
+            }
+            if (indiceMin != i)
+            {
+                Jogador temp = vetor[indiceMin];
+                vetor[indiceMin] = vetor[i];
+                vetor[i] = temp;               
+            }
+        }
+    }
     public Carta[] ConverterCartasNoMonte(Carta[] cartas)
     {
         foreach (Carta carta in cartas)
@@ -406,11 +429,13 @@ class Jogo
     {
         int i = esq, j = dir;
         int pivo = int.Parse(array[(esq + dir) / 2].Valor);
+
         while (i <= j)
         {
-            while (int.Parse(array[i].Valor) < pivo)
+            while (i < array.Length && int.Parse(array[i].Valor) < pivo)
                 i++;
-            while (int.Parse(array[j].Valor) > pivo)
+
+            while (j >= 0 && int.Parse(array[j].Valor) > pivo)
                 j--;
             if (i <= j)
             {

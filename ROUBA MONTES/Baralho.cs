@@ -36,7 +36,7 @@ class Baralho
 
         // Inicializa o baralho com todas as cartas possíveis (52 cartas)
         char[] naipes = { '\u2665', '\u2666', '\u2663', '\u2660' };
-        string[] valores = { /*"A", "2", "3", "4", "5",*/ "6", "7", "8", "9", "10", "J", "Q", "K" };
+        string[] valores = { /*"A", "2", "3", "4", "5",*//* "6", "7", "8", "9",*/ "10", "J", "Q", "K" };
 
         //Até ser menor que a quantidade de baralhos escolhida pelo jogador
         for (int i = 0; i < quantidadeDeBaralhos; i++)
