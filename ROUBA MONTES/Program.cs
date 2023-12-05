@@ -10,12 +10,10 @@ class Program
     public static void Main(string[] args)
     {
         int opcao = 0;
-
         do
         {
             Console.Clear();
-            ImprimirTituloJogo();
-
+            ImprimirTituloJogo();       
 
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("==== LET'S PLAY! ====");
@@ -31,7 +29,8 @@ class Program
             {
                 case 1:
                     //Instanciar novo jogo
-                    Jogo Jogo = CriarJogo();
+                    Jogo Jogo = new Jogo();
+                    Jogo.CriarJogo();
                     //Iniciar o jogo depois de ter sido instanciado
                     Jogo.Jogar();
                     break;
@@ -43,61 +42,65 @@ class Program
         } while (opcao != 3);
 
         //Método para criar um novo jogo - Jogadores - Distribuição de cartas - Monte de compras
-        static Jogo CriarJogo()
-        {
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine("=== INSIRA OS DADOS PARA COMEÇAR A PARTIDA ===");
-            Console.ResetColor();
-            Console.Write("Quantidade de jogadores da partida: ");
-            int quantidadeJogadores = int.Parse(Console.ReadLine());
+        //Jogo CriarJogo()
+        //{
+        //    contadorPartida++;
+        //    Console.WriteLine();
+        //    Console.ForegroundColor = ConsoleColor.DarkBlue;
+        //    Console.WriteLine("=== INSIRA OS DADOS PARA COMEÇAR A PARTIDA ===");
+        //    Console.ResetColor();
 
-            //Fila da ordem de jogadores
-            Queue<Jogador> JogadoresDaPartida = new Queue<Jogador>(); // Criando fila
+        //    if (contadorPartida < 2)
+        //    {
+        //        Console.Write("Quantidade de jogadores da partida: ");
+        //        int quantidadeJogadores = int.Parse(Console.ReadLine());
 
-            for (int i = 1; i <= quantidadeJogadores; i++)
-            {
-                Console.Write($"Insira o nome do {i}° Jogador: ");
-                string nomeJogador = Console.ReadLine();
+        //        //Fila da ordem de jogadores
+        //        Queue<Jogador> JogadoresDaPartida = new Queue<Jogador>(); // Criando fila
 
-                Jogador jogador = new Jogador(i, nomeJogador);
-                JogadoresDaPartida.Enqueue(jogador);
-            }
+        //        for (int i = 1; i <= quantidadeJogadores; i++)
+        //        {
+        //            Console.Write($"Insira o nome do {i}° Jogador: ");
+        //            string nomeJogador = Console.ReadLine();
 
-            //Inserir quantidade de baralhos
-            Console.Write("Quantidade de baralhos para a partida: ");
-            int quantidadeBaralhos = int.Parse(Console.ReadLine());
+        //            Jogador jogador = new Jogador(i, nomeJogador);
+        //            JogadoresDaPartida.Enqueue(jogador);
+        //        }
+        //    }
+        //    //Inserir quantidade de baralhos
+        //    Console.Write("Quantidade de baralhos para a partida: ");
+        //    int quantidadeBaralhos = int.Parse(Console.ReadLine());
 
-            //Criar um baralho 
-            Baralho baralho = new Baralho();
-            List<Carta> lista = baralho.CriarBaralho(quantidadeBaralhos);
+        //    //Criar um baralho 
+        //    Baralho baralho = new Baralho();
+        //    List<Carta> lista = baralho.CriarBaralho(quantidadeBaralhos);
 
-            //Inserir as cartas do baralho no monte de compras
-            Stack<Carta> monte = new Stack<Carta>();
-            foreach (Carta carta in lista)
-            {
-                monte.Push(carta);
-            }
+        //    //Inserir as cartas do baralho no monte de compras
+        //    Stack<Carta> monte = new Stack<Carta>();
+        //    foreach (Carta carta in lista)
+        //    {
+        //        monte.Push(carta);
+        //    }
 
-            //Limpar a lista de cartas (as cartas estão inseridas na pilha)
-            baralho.baralho.Clear();
+        //    //Limpar a lista de cartas (as cartas estão inseridas na pilha)
+        //    baralho.baralho.Clear();
 
-            //Inserir 4 cartas iniciais na area de descarte
-            List<Carta> area = new List<Carta>();
-            for (int i = 0; i < 4; i++)
-            {
-                area.Add(monte.Pop());
-            }
-            Carta primeiraCarta = monte.Pop();
-            //Instanciar um novo jogo
-            Jogo novoJogo = new Jogo(JogadoresDaPartida, baralho, monte, area, primeiraCarta);
+        //    //Inserir 4 cartas iniciais na area de descarte
+        //    List<Carta> area = new List<Carta>();
+        //    for (int i = 0; i < 4; i++)
+        //    {
+        //        area.Add(monte.Pop());
+        //    }
+        //    Carta primeiraCarta = monte.Pop();
+        //    //Instanciar um novo jogo
+        //    Jogo novoJogo = new Jogo(JogadoresDaPartida, baralho, monte, area, primeiraCarta);
 
-            Console.Clear();
-            novoJogo.Imprimir();
+        //    Console.Clear();
+        //    novoJogo.Imprimir();
 
-            return novoJogo;
+        //    return novoJogo;
 
-        }
+        //}
 
         static void ImprimirTituloJogo()
         {

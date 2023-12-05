@@ -9,6 +9,7 @@ class Jogo
     Stack<Carta> MonteDeCompras;
     List<Carta> AreaDeDescarte;
     Carta cartaDaVez;
+    int contadorPartidas;
 
     //Construtor de um jogo deafult
     public Jogo()
@@ -18,6 +19,7 @@ class Jogo
         this.MonteDeCompras = new Stack<Carta>();
         this.AreaDeDescarte = new List<Carta>();
         this.cartaDaVez = new Carta();
+        this.contadorPartidas = 0;
     }
 
     //Construtor de um jogo com parâmetros
@@ -28,7 +30,66 @@ class Jogo
         this.MonteDeCompras = monte;
         this.AreaDeDescarte = area;
         this.cartaDaVez = primeiraCarta;
+        this.contadorPartidas = 0;
     }
+
+
+    public void CriarJogo()
+    {
+        contadorPartidas++;
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.DarkBlue;
+        Console.WriteLine("=== INSIRA OS DADOS PARA COMEÇAR A PARTIDA ===");
+        Console.ResetColor();
+
+        if (contadorPartidas < 2)
+        {
+            Console.Write("Quantidade de jogadores da partida: ");
+            int quantidadeJogadores = int.Parse(Console.ReadLine());
+
+            //Fila da ordem de jogadores
+           
+            for (int i = 1; i <= quantidadeJogadores; i++)
+            {
+                Console.Write($"Insira o nome do {i}° Jogador: ");
+                string nomeJogador = Console.ReadLine();
+
+                Jogador jogador = new Jogador(i, nomeJogador);
+                Jogadores.Enqueue(jogador);
+            }
+        }
+        //Inserir quantidade de baralhos
+        Console.Write("Quantidade de baralhos para a partida: ");
+        int quantidadeBaralhos = int.Parse(Console.ReadLine());
+
+        //Criar um baralho 
+        
+        List<Carta> lista = Baralho.CriarBaralho(quantidadeBaralhos);
+
+        //Inserir as cartas do baralho no monte de compras
+        
+        foreach (Carta carta in lista)
+        {
+            MonteDeCompras.Push(carta);
+        }
+
+        //Limpar a lista de cartas (as cartas estão inseridas na pilha)
+        Baralho.baralho.Clear();
+
+        //Inserir 4 cartas iniciais na area de descarte
+        for (int i = 0; i < 4; i++)
+        {
+            AreaDeDescarte.Add(MonteDeCompras.Pop());
+        }
+        cartaDaVez = MonteDeCompras.Pop();
+        //Instanciar um novo jogo
+        
+
+        Console.Clear();
+        Imprimir();
+
+    }
+
 
     //===================
     //Método para iniciar as rodadas.
@@ -295,7 +356,8 @@ class Jogo
         else
         {
             Jogadores.Enqueue(jogadorDaVez);
-
+            //Adiciona na area de descarte
+            AreaDeDescarte.Add(cartaDaVez);
             FinalizarJogo();
         }
 
@@ -305,9 +367,7 @@ class Jogo
     //Metodo para quando o jogo acabar
     public void FinalizarJogo()
     {
-        //A
-        //diciona na area de descarte
-        AreaDeDescarte.Add(cartaDaVez);
+        
         //Ordenar o ranking final
         Jogador[] RankingFinal = Jogadores.ToArray();
         SelectionSort(RankingFinal);
@@ -371,11 +431,20 @@ class Jogo
             Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
         }
 
+        foreach(Jogador jogador in Jogadores)
+        {
+            jogador.CartasNoMonte.Clear();
+        }
+        AreaDeDescarte.Clear();
+        cartaDaVez = new Carta();
         Console.WriteLine("Pressione Qualquer Tecla Para Ir Ao Menu");
         Console.ReadKey();
     }
 
-
+    public int QuantidadeJogadores()
+    {
+        return Jogadores.Count;
+    }
     static void SelectionSort(Jogador[] vetor)
     {
         for (int i = 0; i < (vetor.Length - 1); i++)
