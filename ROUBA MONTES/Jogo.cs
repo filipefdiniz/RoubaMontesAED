@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Intrinsics.X86;
 
 class Jogo
 {
@@ -42,13 +41,13 @@ class Jogo
         Console.WriteLine("=== INSIRA OS DADOS PARA COMEÇAR A PARTIDA ===");
         Console.ResetColor();
 
+        //Verificar se é a primeira partida desde que foi iniciado no terminal
         if (contadorPartidas < 2)
         {
             Console.Write("Quantidade de jogadores da partida: ");
             int quantidadeJogadores = int.Parse(Console.ReadLine());
 
             //Fila da ordem de jogadores
-           
             for (int i = 1; i <= quantidadeJogadores; i++)
             {
                 Console.Write($"Insira o nome do {i}° Jogador: ");
@@ -58,16 +57,15 @@ class Jogo
                 Jogadores.Enqueue(jogador);
             }
         }
+
         //Inserir quantidade de baralhos
         Console.Write("Quantidade de baralhos para a partida: ");
         int quantidadeBaralhos = int.Parse(Console.ReadLine());
 
-        //Criar um baralho 
-        
+        //Criar um baralho  
         List<Carta> lista = Baralho.CriarBaralho(quantidadeBaralhos);
 
-        //Inserir as cartas do baralho no monte de compras
-        
+        //Inserir as cartas do baralho no monte de compras     
         foreach (Carta carta in lista)
         {
             MonteDeCompras.Push(carta);
@@ -76,15 +74,9 @@ class Jogo
         //Limpar a lista de cartas (as cartas estão inseridas na pilha)
         Baralho.baralho.Clear();
 
-        //Inserir 4 cartas iniciais na area de descarte
-        for (int i = 0; i < 4; i++)
-        {
-            AreaDeDescarte.Add(MonteDeCompras.Pop());
-        }
-        cartaDaVez = MonteDeCompras.Pop();
-        //Instanciar um novo jogo
+        //Inserir carta na carta da vez  
+        cartaDaVez = MonteDeCompras.Pop();        
         
-
         Console.Clear();
         Imprimir();
 
@@ -97,11 +89,13 @@ class Jogo
     {
 
         //Mostrar jogador
-        Rodadas();
+        do
+        {
+            Rodadas();
+        } while (MonteDeCompras.Count > 0);
 
 
-
-        //FinalizarJogo();
+        FinalizarJogo();
     }
 
     //=================================================================
@@ -116,6 +110,7 @@ class Jogo
     //Método de menu de ações de jogadas.
     public void MenuDeAcoes(Jogador jogadorDaVez)
     {
+
         Console.Write($"Jogador da vez:");
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($" {jogadorDaVez.Nome}");
@@ -183,10 +178,8 @@ class Jogo
                     else
                     {
                         Jogadores.Enqueue(jogadorDaVez);
-                        FinalizarJogo();
+                        //FinalizarJogo();
                     }
-
-
                 }
                 else
                 {
@@ -213,44 +206,36 @@ class Jogo
     //Método para roubar o monte de um jogador específico.
     public void RoubarDoMonteDeJogador(int idJogador, Jogador jogadorDaVez)
     {
-        //Monte temporário para armazenar as cartas do monte do jogador a ser roubado
+        // Monte temporário para armazenar as cartas do monte do jogador a ser roubado
         Stack<Carta> MonteTemp = new Stack<Carta>();
+        Queue<Jogador> jogadoresCopy = new Queue<Jogador>(Jogadores);
 
-        //Percorrer fila de jogadores
-        foreach (Jogador jogadorRoubado in Jogadores)
+        // Percorrer fila de jogadores
+        foreach (Jogador jogadorRoubado in jogadoresCopy)
         {
-            //Verificação para achar o jogador escolhido que terá seu monte roubado
+            // Verificação para achar o jogador escolhido que terá seu monte roubado
             if (jogadorRoubado.Id == idJogador)
             {
-                //Verificar se a quantidade de cartas do monte do jogador a ser roubado é maior do que zero
+                // Verificar se a quantidade de cartas do monte do jogador a ser roubado é maior do que zero
                 if (jogadorRoubado.CartasNoMonte.Count > 0)
                 {
-                    //Verificar se a carta da vez é igual a carta do topo do monte a ser roubado
+                    // Verificar se a carta da vez é igual a carta do topo do monte a ser roubado
                     if (cartaDaVez.Valor == jogadorRoubado.RetornarCartaDoTopo())
                     {
-                        //Empilhar as cartas do monte a ser roubado em um monte temporário
+                        // Empilhar as cartas do monte a ser roubado em um monte temporário
                         foreach (Carta carta in jogadorRoubado.CartasNoMonte.ToArray())
                         {
                             MonteTemp.Push(jogadorRoubado.CartasNoMonte.Pop());
                         }
 
-                        //Empilhar as cartas do monte temporário no monte da pessoa que o roubou
+                        // Empilhar as cartas do monte temporário no monte da pessoa que o roubou
                         foreach (Carta carta in MonteTemp.ToArray())
                         {
                             jogadorDaVez.CartasNoMonte.Push(MonteTemp.Pop());
                         }
 
-                        //Colocar a carta da vez no topo do monte da pessoa que roubou
+                        // Colocar a carta da vez no topo do monte da pessoa que roubou
                         jogadorDaVez.CartasNoMonte.Push(cartaDaVez);
-                        if (MonteDeCompras.Count > 0)
-                        {
-                            cartaDaVez = MonteDeCompras.Pop();
-                        }
-                        else
-                        {
-                            Jogadores.Enqueue(jogadorDaVez);
-                            FinalizarJogo();
-                        }
 
                         Console.Clear();
                         ImprimirTituloJogo();
@@ -263,8 +248,20 @@ class Jogo
                         Console.WriteLine($"{jogadorDaVez.Nome}!");
                         Console.ResetColor();
                         Console.WriteLine();
-                        //Voltar com o menu de ações para continuar a jogada
+
+                        // Atualizar a carta da vez após o roubo
+                        if (MonteDeCompras.Count > 0)
+                        {
+                            cartaDaVez = MonteDeCompras.Pop();
+                        }
+                        else
+                        {
+                            Jogadores.Enqueue(jogadorDaVez);
+                        }
+
+                        // Voltar com o menu de ações para continuar a jogada
                         MenuDeAcoes(jogadorDaVez);
+                        return;
                     }
                     else
                     {
@@ -272,13 +269,14 @@ class Jogo
                         ImprimirTituloJogo();
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("Sua carta da vez não é igual a carta do monte do jogador escolhido.Tente novamente!");
+                        Console.WriteLine("Sua carta da vez não é igual à carta do monte do jogador escolhido. Tente novamente!");
                         Console.ResetColor();
                         Console.WriteLine();
                         MenuDeAcoes(jogadorDaVez);
+                        return;
                     }
                 }
-                else //Verificação caso o jogador escolhido nao tenha cartas no monte
+                else // Verificação caso o jogador escolhido não tenha cartas no monte
                 {
                     Console.Clear();
                     ImprimirTituloJogo();
@@ -287,10 +285,27 @@ class Jogo
                     Console.ResetColor();
                     Console.WriteLine();
                     MenuDeAcoes(jogadorDaVez);
+                    return;
                 }
             }
         }
+
+        // Atualizar a carta da vez caso o jogador escolhido não seja encontrado
+        if (MonteDeCompras.Count > 0)
+        {
+            cartaDaVez = MonteDeCompras.Pop();
+        }
+        
+
+        Console.Clear();
+        ImprimirTituloJogo();
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.WriteLine($"Jogador com o ID {idJogador} não encontrado. Tente novamente!");
+        Console.ResetColor();
+        Console.WriteLine();
+        MenuDeAcoes(jogadorDaVez);
     }
+
 
     //=================================================
     //Método para roubar uma carta da Área de descarte.
@@ -322,11 +337,6 @@ class Jogo
                 {
                     cartaDaVez = MonteDeCompras.Pop();
                 }
-                else
-                {
-                    Jogadores.Enqueue(jogadorDaVez);
-                    FinalizarJogo();
-                }
 
                 return true;
             }
@@ -357,8 +367,7 @@ class Jogo
         {
             Jogadores.Enqueue(jogadorDaVez);
             //Adiciona na area de descarte
-            AreaDeDescarte.Add(cartaDaVez);
-            FinalizarJogo();
+            //FinalizarJogo();
         }
 
 
@@ -372,27 +381,6 @@ class Jogo
         Jogador[] RankingFinal = Jogadores.ToArray();
         SelectionSort(RankingFinal);
 
-        //List<Carta[]> CartasDoGanhador = new List<Carta[]>();
-        ////Ordenar as cartas do(s) ganhador(es)
-        //for (int i = 0, j = 1; j < RankingFinal.Length; i++, j++)
-        //{
-        //    if (i == 0)
-        //    {
-        //        Carta[] CartasDaMao = RankingFinal[i].CartasNoMonte.ToArray();
-        //        CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
-        //        SelectionSort(CartasDaMao);
-        //        ConverterCartasNoMonteLetras(CartasDaMao);
-        //        CartasDoGanhador.Add(CartasDaMao);
-        //    }
-        //    //if (RankingFinal[i].CartasNoMonte.Count == RankingFinal[j].CartasNoMonte.Count)
-        //    //{
-        //    //    Carta[] CartasDaMao = RankingFinal[j].CartasNoMonte.ToArray();
-        //    //    CartasDaMao = ConverterCartasNoMonte(CartasDaMao);
-        //    //    SelectionSort(CartasDaMao);
-        //    //    ConverterCartasNoMonteLetras(CartasDaMao);
-        //    //    CartasDoGanhador.Add(CartasDaMao);
-        //    //}
-        //}
         Console.Clear();
         ImprimirTituloJogo();
         Console.WriteLine();
@@ -400,47 +388,56 @@ class Jogo
         Console.WriteLine("==== FIM DE JOGO ====");
         Console.WriteLine("=====================\n");
 
-        Console.WriteLine("Cartas Na Mesa: " + AreaDeDescarte.Count);
         //Exibir ranking Final
-        Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[0].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[0].CartasNoMonte.Count}");
-        Console.Write("Cartas ordenadas: | ");
-        RankingFinal[0].ImprimirCartasDaMao();
-        Console.WriteLine();
+        for (int i = 0; i < RankingFinal.Length; i++)
+        {
+            if (i == 0)
+            {
+                Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[i].CartasNoMonte.Count}");
+                Console.Write("Cartas ordenadas: | ");
+                RankingFinal[i].ImprimirCartasDaMao();
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
 
-        //if (CartasDoGanhador.Count > 1)
+            }    
+        }
+
+        //Armazenar posição na ultima partida do jogador
+        
+        for(int i = 0; i < RankingFinal.Length; i++)
+        {
+
+            RankingFinal[i].ArmazenarRankingFinal(i+1);
+        }
+
+        //foreach(Jogador jogador in Jogadores)
         //{
-        //    for (int i = 1; i < RankingFinal.Length; i++)
-        //    {
-        //        Console.WriteLine("Empate!");
-        //        Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
-        //        Console.Write("Cartas ordenadas: | ");
-        //        for (int j = 0; j < CartasDoGanhador.Count; j++)
-        //        {
-        //            Carta[] carta = CartasDoGanhador[j];
-        //            Console.Write(carta[j].Valor);
-        //            Console.ForegroundColor = ConsoleColor.Green;
-        //            Console.Write(carta[j].Naipe);
-        //            Console.ResetColor();
-        //            Console.WriteLine(" | ");
-        //        }
-        //    }
+        //    jogador.CartasNoMonte.Clear();
         //}
 
-        for (int i = 1; i < RankingFinal.Length; i++)
-        {
-            Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
-        }
+        //AreaDeDescarte.Clear();
+        //cartaDaVez = new Carta();
 
-        foreach(Jogador jogador in Jogadores)
-        {
-            jogador.CartasNoMonte.Clear();
-        }
-        AreaDeDescarte.Clear();
-        cartaDaVez = new Carta();
         Console.WriteLine("Pressione Qualquer Tecla Para Ir Ao Menu");
         Console.ReadKey();
     }
 
+    public void ExibiRanking(int idJogador)
+    {
+        foreach(Jogador jogador in Jogadores)
+        {
+            int id = jogador.RetornarIdJogador();
+            if(id == idJogador)
+            {
+                Console.WriteLine($"Jogador: {jogador.Nome}");
+                jogador.ExibirHistóricoPessoal(id);
+            }
+        }
+        Console.ReadKey();
+    }
     public int QuantidadeJogadores()
     {
         return Jogadores.Count;

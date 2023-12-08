@@ -5,9 +5,9 @@ class Jogador
 {
     public int Id;
     public string Nome;
-    int Posicao;
+    private int Posicao;
     public Stack<Carta> CartasNoMonte;
-    List<string> RankingPessoalPorPartida;
+    private List<string> RankingPessoalPorPartida;
 
     public Jogador(int id, string nome)
     {
@@ -145,5 +145,30 @@ class Jogador
         }
     }
 
+    public void ArmazenarRankingFinal(int posicaoUltimaPartida)
+    {     
+        Posicao = posicaoUltimaPartida;
+        RankingPessoalPorPartida.Add($"{Posicao}°Lugar");      
+        
+    }
+
+    public int RetornarIdJogador()
+    {
+        return Id;
+    }
+
+    public void ExibirHistóricoPessoal(int id)
+    {
+        int i = 0;
+        if (id == Id) 
+        { 
+            foreach (string Ranking in RankingPessoalPorPartida)
+            {
+            Console.Write($"Partida {i}: ");
+            Console.WriteLine(Ranking);
+            i++;
+            }
+        }
+    }
 
 }

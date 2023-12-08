@@ -10,8 +10,11 @@ class Program
     public static void Main(string[] args)
     {
         int opcao = 0;
+        Jogo Jogo = new Jogo();
+
         do
         {
+            
             Console.Clear();
             ImprimirTituloJogo();       
 
@@ -28,13 +31,15 @@ class Program
             switch (opcao)
             {
                 case 1:
-                    //Instanciar novo jogo
-                    Jogo Jogo = new Jogo();
+                    //Instanciar novo jogo                  
                     Jogo.CriarJogo();
                     //Iniciar o jogo depois de ter sido instanciado
                     Jogo.Jogar();
                     break;
                 case 2:
+                    Console.Write("Digite o ID do jogador que deseja ver o histórico de posições: ");
+                    int idJogador = int.Parse(Console.ReadLine());
+                    Jogo.ExibiRanking(idJogador);
                     break;
                 default:
                     break;
