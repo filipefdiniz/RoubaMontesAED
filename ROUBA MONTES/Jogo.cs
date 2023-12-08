@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 class Jogo
 {
@@ -32,7 +33,8 @@ class Jogo
         this.contadorPartidas = 0;
     }
 
-
+    //===================
+    //Método para intanciar um novo jogo ou partida
     public void CriarJogo()
     {
         contadorPartidas++;
@@ -62,8 +64,11 @@ class Jogo
         Console.Write("Quantidade de baralhos para a partida: ");
         int quantidadeBaralhos = int.Parse(Console.ReadLine());
 
+        
         //Criar um baralho  
         List<Carta> lista = Baralho.CriarBaralho(quantidadeBaralhos);
+
+        InserirLogs($"Jogo criado com {quantidadeBaralhos} baralho(s).");
 
         //Inserir as cartas do baralho no monte de compras     
         foreach (Carta carta in lista)
@@ -71,17 +76,20 @@ class Jogo
             MonteDeCompras.Push(carta);
         }
 
+        InserirLogs("Baralho inserido no monte de compras!");
         //Limpar a lista de cartas (as cartas estão inseridas na pilha)
         Baralho.baralho.Clear();
 
         //Inserir carta na carta da vez  
-        cartaDaVez = MonteDeCompras.Pop();        
-        
+        cartaDaVez = MonteDeCompras.Pop();
+        InserirLogs("Carta da vez iniciada!");
+
         Console.Clear();
         Imprimir();
 
-    }
+        InserirLogs("Novo jogo criado!");
 
+    }
 
     //===================
     //Método para iniciar as rodadas.
@@ -104,6 +112,7 @@ class Jogo
     {
         Jogador jogadorDaVez = Jogadores.Dequeue();
         MenuDeAcoes(jogadorDaVez);
+        InserirLogs("Nova rodada!");
     }
 
     //===================================
@@ -177,8 +186,7 @@ class Jogo
                     }
                     else
                     {
-                        Jogadores.Enqueue(jogadorDaVez);
-                        //FinalizarJogo();
+                        Jogadores.Enqueue(jogadorDaVez);                       
                     }
                 }
                 else
@@ -261,6 +269,8 @@ class Jogo
 
                         // Voltar com o menu de ações para continuar a jogada
                         MenuDeAcoes(jogadorDaVez);
+
+                        InserirLogs($"Jogador {jogadorDaVez.Nome} roubou o monte do jogador {jogadorRoubado.Nome}");
                         return;
                     }
                     else
@@ -304,8 +314,9 @@ class Jogo
         Console.ResetColor();
         Console.WriteLine();
         MenuDeAcoes(jogadorDaVez);
-    }
 
+        
+    }
 
     //=================================================
     //Método para roubar uma carta da Área de descarte.
@@ -338,6 +349,8 @@ class Jogo
                     cartaDaVez = MonteDeCompras.Pop();
                 }
 
+                InserirLogs($"Jogador {jogadorDaVez.Nome} roubou a carta da area de descarte!");
+
                 return true;
             }
         }
@@ -350,6 +363,7 @@ class Jogo
     {
         //Adicionar a carta a ser descartada a lista de cartas da área de descarte
         AreaDeDescarte.Add(cartaDaVez);
+        InserirLogs($"Jogador {jogadorDaVez.Nome} descartou uma carta");
 
         //Atualizar a carta da vez - Comprada do monte de compras
         if (MonteDeCompras.Count > 0)
@@ -365,11 +379,10 @@ class Jogo
         }
         else
         {
-            Jogadores.Enqueue(jogadorDaVez);
-            //Adiciona na area de descarte
-            //FinalizarJogo();
+            Jogadores.Enqueue(jogadorDaVez);           
         }
 
+        
 
     }
 
@@ -388,6 +401,7 @@ class Jogo
         Console.WriteLine("==== FIM DE JOGO ====");
         Console.WriteLine("=====================\n");
 
+        InserirLogs($"Jogo Finalizado!");
         //Exibir ranking Final
         for (int i = 0; i < RankingFinal.Length; i++)
         {
@@ -462,7 +476,6 @@ class Jogo
             }
         }
     }
-
     static void SelectionSort(Carta[] vetor)
     {
         for (int i = 0; i < (vetor.Length - 1); i++)
@@ -506,7 +519,6 @@ class Jogo
         }
         return cartas;
     }
-
     public Carta[] ConverterCartasNoMonteLetras(Carta[] cartas)
     {
         foreach (Carta carta in cartas)
@@ -560,7 +572,6 @@ class Jogo
         array[i] = array[j];
         array[j] = temp;
     }
-
     void Quicksort(Jogador[] array, int esq, int dir)
     {
         int i = esq, j = dir;
@@ -628,6 +639,22 @@ class Jogo
         Console.ResetColor();
         Console.WriteLine();
 
+    }
+
+    public void InserirLogs(string log)
+    {
+        try
+        {
+            // Cria ou abre um arquivo
+            using (StreamWriter arquivoLog = new StreamWriter("C:\\Users\\filip\\OneDrive\\Documentos\\PUC\\AED\\TRABALHO FINAL - AED\\ROUBA MONTES\\ROUBA MONTES\\Logs.txt", true, Encoding.UTF8))
+            {
+                arquivoLog.WriteLine(log);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
     }
 
 

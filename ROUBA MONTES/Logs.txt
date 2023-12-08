@@ -1,0 +1,32 @@
+﻿Iniciando um novo jogo.
+Baralho criado e embaralhado
+Jogo criado com 1 baralho(s).
+Baralho inserido no monte de compras!
+Carta da vez iniciada!
+Novo jogo criado!
+Jogador fidff descartou uma carta
+Jogador fsdfsd roubou a carta da area de descarte!
+Jogador fsdfsd descartou uma carta
+Jogador fidff descartou uma carta
+Jogador fsdfsd descartou uma carta
+Jogador fidff roubou a carta da area de descarte!
+Jogador fidff descartou uma carta
+Jogador fsdfsd roubou a carta da area de descarte!
+Jogador fsdfsd descartou uma carta
+Jogador fidff roubou a carta da area de descarte!
+Jogador fidff roubou a carta da area de descarte!
+Jogador fidff roubou a carta da area de descarte!
+Jogador fidff descartou uma carta
+Jogador fsdfsd descartou uma carta
+Jogador fidff roubou a carta da area de descarte!
+Nova rodada!
+Nova rodada!
+Jogador fidff roubou o monte do jogador fsdfsd
+Nova rodada!
+Nova rodada!
+Nova rodada!
+Nova rodada!
+Nova rodada!
+Nova rodada!
+Nova rodada!
+Jogo Finalizado!

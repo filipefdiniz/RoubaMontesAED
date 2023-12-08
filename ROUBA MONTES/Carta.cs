@@ -9,9 +9,7 @@
 
     }
     public Carta()
-    {
-        this.Valor = "default";
-        this.Naipe = 'd';
+    {        
 
     }
 }

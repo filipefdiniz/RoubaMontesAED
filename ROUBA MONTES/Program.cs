@@ -31,12 +31,14 @@ class Program
             switch (opcao)
             {
                 case 1:
-                    //Instanciar novo jogo                  
+                    //Instanciar novo jogo
+                    InserirLogs("Iniciando um novo jogo.");
                     Jogo.CriarJogo();
                     //Iniciar o jogo depois de ter sido instanciado
                     Jogo.Jogar();
                     break;
                 case 2:
+                    InserirLogs("Ver histórico de um jogador");
                     Console.Write("Digite o ID do jogador que deseja ver o histórico de posições: ");
                     int idJogador = int.Parse(Console.ReadLine());
                     Jogo.ExibiRanking(idJogador);
@@ -46,66 +48,6 @@ class Program
             }
         } while (opcao != 3);
 
-        //Método para criar um novo jogo - Jogadores - Distribuição de cartas - Monte de compras
-        //Jogo CriarJogo()
-        //{
-        //    contadorPartida++;
-        //    Console.WriteLine();
-        //    Console.ForegroundColor = ConsoleColor.DarkBlue;
-        //    Console.WriteLine("=== INSIRA OS DADOS PARA COMEÇAR A PARTIDA ===");
-        //    Console.ResetColor();
-
-        //    if (contadorPartida < 2)
-        //    {
-        //        Console.Write("Quantidade de jogadores da partida: ");
-        //        int quantidadeJogadores = int.Parse(Console.ReadLine());
-
-        //        //Fila da ordem de jogadores
-        //        Queue<Jogador> JogadoresDaPartida = new Queue<Jogador>(); // Criando fila
-
-        //        for (int i = 1; i <= quantidadeJogadores; i++)
-        //        {
-        //            Console.Write($"Insira o nome do {i}° Jogador: ");
-        //            string nomeJogador = Console.ReadLine();
-
-        //            Jogador jogador = new Jogador(i, nomeJogador);
-        //            JogadoresDaPartida.Enqueue(jogador);
-        //        }
-        //    }
-        //    //Inserir quantidade de baralhos
-        //    Console.Write("Quantidade de baralhos para a partida: ");
-        //    int quantidadeBaralhos = int.Parse(Console.ReadLine());
-
-        //    //Criar um baralho 
-        //    Baralho baralho = new Baralho();
-        //    List<Carta> lista = baralho.CriarBaralho(quantidadeBaralhos);
-
-        //    //Inserir as cartas do baralho no monte de compras
-        //    Stack<Carta> monte = new Stack<Carta>();
-        //    foreach (Carta carta in lista)
-        //    {
-        //        monte.Push(carta);
-        //    }
-
-        //    //Limpar a lista de cartas (as cartas estão inseridas na pilha)
-        //    baralho.baralho.Clear();
-
-        //    //Inserir 4 cartas iniciais na area de descarte
-        //    List<Carta> area = new List<Carta>();
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        area.Add(monte.Pop());
-        //    }
-        //    Carta primeiraCarta = monte.Pop();
-        //    //Instanciar um novo jogo
-        //    Jogo novoJogo = new Jogo(JogadoresDaPartida, baralho, monte, area, primeiraCarta);
-
-        //    Console.Clear();
-        //    novoJogo.Imprimir();
-
-        //    return novoJogo;
-
-        //}
 
         static void ImprimirTituloJogo()
         {
@@ -127,6 +69,25 @@ class Program
         }
 
 
+
+        void InserirLogs(string log)
+        {
+            try
+            {
+
+                using (StreamWriter arquivoLog = new StreamWriter("C:\\Users\\filip\\OneDrive\\Documentos\\PUC\\AED\\TRABALHO FINAL - AED\\ROUBA MONTES\\ROUBA MONTES\\Logs.txt", true, Encoding.UTF8))
+                {
+                    arquivoLog.WriteLine(log);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+        }
+
     }
+
+
 
 }

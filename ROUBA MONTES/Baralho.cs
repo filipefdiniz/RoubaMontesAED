@@ -50,7 +50,7 @@ class Baralho
             }
         }
         Embaralhar(baralho);
-
+        InserirLogs("Baralho criado e embaralhado");
         return baralho;
        
 
@@ -64,6 +64,23 @@ class Baralho
 
         }
     }
-    
+
+    public void InserirLogs(string log)
+    {
+        try
+        {
+
+            using (StreamWriter arquivoLog = new StreamWriter("C:\\Users\\filip\\OneDrive\\Documentos\\PUC\\AED\\TRABALHO FINAL - AED\\ROUBA MONTES\\ROUBA MONTES\\Logs.txt", true, Encoding.UTF8))
+            {
+                arquivoLog.WriteLine(log);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+    }
+
+
 }
 

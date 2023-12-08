@@ -1,18 +1,3 @@
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.csproj.AssemblyReference.cache
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.AssemblyInfoInputs.cache
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.AssemblyInfo.cs
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.csproj.CoreCompileInputs.cache
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.exe
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.deps.json
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.runtimeconfig.json
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.dll
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.pdb
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.dll
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\refint\ROUBA MONTES.dll
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.pdb
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.genruntimeconfig.cache
-C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ref\ROUBA MONTES.dll
 C:\Users\macen\Documents\projetos visual studio\tb rbm\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.exe
 C:\Users\macen\Documents\projetos visual studio\tb rbm\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.deps.json
 C:\Users\macen\Documents\projetos visual studio\tb rbm\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.runtimeconfig.json
@@ -27,3 +12,18 @@ C:\Users\macen\Documents\projetos visual studio\tb rbm\ROUBA MONTES\obj\Debug\ne
 C:\Users\macen\Documents\projetos visual studio\tb rbm\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.pdb
 C:\Users\macen\Documents\projetos visual studio\tb rbm\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.genruntimeconfig.cache
 C:\Users\macen\Documents\projetos visual studio\tb rbm\ROUBA MONTES\obj\Debug\net6.0\ref\ROUBA MONTES.dll
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.exe
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.deps.json
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.runtimeconfig.json
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.dll
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\bin\Debug\net6.0\ROUBA MONTES.pdb
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.csproj.AssemblyReference.cache
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.AssemblyInfoInputs.cache
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.AssemblyInfo.cs
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.csproj.CoreCompileInputs.cache
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.dll
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\refint\ROUBA MONTES.dll
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.pdb
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ROUBA MONTES.genruntimeconfig.cache
+C:\Users\filip\OneDrive\Documentos\PUC\AED\TRABALHO FINAL - AED\ROUBA MONTES\ROUBA MONTES\obj\Debug\net6.0\ref\ROUBA MONTES.dll
