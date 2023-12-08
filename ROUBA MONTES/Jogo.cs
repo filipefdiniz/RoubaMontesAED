@@ -69,6 +69,12 @@ class Jogo
         List<Carta> lista = Baralho.CriarBaralho(quantidadeBaralhos);
 
         InserirLogs($"Jogo criado com {quantidadeBaralhos} baralho(s).");
+        
+        InserirLogs($"Jogadores da partida: ");
+        foreach (Jogador jogador in Jogadores)
+        {
+            InserirLogs($"- {jogador.Nome}");
+        }
 
         //Inserir as cartas do baralho no monte de compras     
         foreach (Carta carta in lista)
@@ -82,6 +88,7 @@ class Jogo
 
         //Inserir carta na carta da vez  
         cartaDaVez = MonteDeCompras.Pop();
+        InserirLogs($"Quantidade de cartas no jogo: {MonteDeCompras.Count + 1}");
         InserirLogs("Carta da vez iniciada!");
 
         Console.Clear();
@@ -102,7 +109,6 @@ class Jogo
             Rodadas();
         } while (MonteDeCompras.Count > 0);
 
-
         FinalizarJogo();
     }
 
@@ -112,14 +118,13 @@ class Jogo
     {
         Jogador jogadorDaVez = Jogadores.Dequeue();
         MenuDeAcoes(jogadorDaVez);
-        InserirLogs("Nova rodada!");
     }
 
     //===================================
     //Método de menu de ações de jogadas.
     public void MenuDeAcoes(Jogador jogadorDaVez)
     {
-
+        InserirLogs($"{jogadorDaVez.Nome} | Carta da vez: {cartaDaVez.Valor}{cartaDaVez.Naipe}");
         Console.Write($"Jogador da vez:");
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($" {jogadorDaVez.Nome}");
@@ -407,7 +412,9 @@ class Jogo
         {
             if (i == 0)
             {
+                InserirLogs("===== RESULTADO DA PARTIDA =====");
                 Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[i].CartasNoMonte.Count}");
+                InserirLogs($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[i].CartasNoMonte.Count}");
                 Console.Write("Cartas ordenadas: | ");
                 RankingFinal[i].ImprimirCartasDaMao();
                 Console.WriteLine();
@@ -415,9 +422,11 @@ class Jogo
             else
             {
                 Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
-
+                InserirLogs($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
             }    
         }
+
+        
 
         //Armazenar posição na ultima partida do jogador
         
@@ -649,7 +658,7 @@ class Jogo
             using (StreamWriter arquivoLog = new StreamWriter("C:\\Users\\filip\\OneDrive\\Documentos\\PUC\\AED\\TRABALHO FINAL - AED\\ROUBA MONTES\\ROUBA MONTES\\Logs.txt", true, Encoding.UTF8))
             {
                 arquivoLog.WriteLine(log);
-            }
+            }          
         }
         catch (Exception e)
         {

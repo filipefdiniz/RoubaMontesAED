@@ -11,6 +11,7 @@ class Program
     {
         int opcao = 0;
         Jogo Jogo = new Jogo();
+        InserirLogs("ROUBA MONTES - LOGS");
 
         do
         {

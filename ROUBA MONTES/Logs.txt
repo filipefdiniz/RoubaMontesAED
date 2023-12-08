@@ -1,32 +1,25 @@
 ﻿Iniciando um novo jogo.
 Baralho criado e embaralhado
-Jogo criado com 1 baralho(s).
+Jogo criado com 2 baralho(s).
+Jogadores da partida: 
+- yuri
+- pedro
+- filipe
 Baralho inserido no monte de compras!
+Quantidade de cartas no jogo: 104
 Carta da vez iniciada!
 Novo jogo criado!
-Jogador fidff descartou uma carta
-Jogador fsdfsd roubou a carta da area de descarte!
-Jogador fsdfsd descartou uma carta
-Jogador fidff descartou uma carta
-Jogador fsdfsd descartou uma carta
-Jogador fidff roubou a carta da area de descarte!
-Jogador fidff descartou uma carta
-Jogador fsdfsd roubou a carta da area de descarte!
-Jogador fsdfsd descartou uma carta
-Jogador fidff roubou a carta da area de descarte!
-Jogador fidff roubou a carta da area de descarte!
-Jogador fidff roubou a carta da area de descarte!
-Jogador fidff descartou uma carta
-Jogador fsdfsd descartou uma carta
-Jogador fidff roubou a carta da area de descarte!
-Nova rodada!
-Nova rodada!
-Jogador fidff roubou o monte do jogador fsdfsd
-Nova rodada!
-Nova rodada!
-Nova rodada!
-Nova rodada!
-Nova rodada!
-Nova rodada!
-Nova rodada!
-Jogo Finalizado!
+yuri | Carta da vez: 2♠
+ROUBA MONTES - LOGS
+Iniciando um novo jogo.
+Baralho criado e embaralhado
+Jogo criado com 2 baralho(s).
+Jogadores da partida: 
+- YURI
+- FILIPE
+- PEDRO
+Baralho inserido no monte de compras!
+Quantidade de cartas no jogo: 104
+Carta da vez iniciada!
+Novo jogo criado!
+YURI | Carta da vez: 7♣
