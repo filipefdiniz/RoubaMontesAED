@@ -412,9 +412,9 @@ class Jogo
         {
             if (i == 0)
             {
-                InserirLogs("===== RESULTADO DA PARTIDA =====");
+                InserirLogsRanking("===== RESULTADO DA PARTIDA =====");
                 Console.WriteLine($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[i].CartasNoMonte.Count}");
-                InserirLogs($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[i].CartasNoMonte.Count}");
+                InserirLogsRanking($"VENCEDOR DA PARTIDA: {RankingFinal[i].Nome} | Posicão: 1°Lugar | Quantidade de cartas no monte: {RankingFinal[i].CartasNoMonte.Count}");
                 Console.Write("Cartas ordenadas: | ");
                 RankingFinal[i].ImprimirCartasDaMao();
                 Console.WriteLine();
@@ -422,7 +422,7 @@ class Jogo
             else
             {
                 Console.WriteLine($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
-                InserirLogs($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
+                InserirLogsRanking($"Jogador: {RankingFinal[i].Nome} | Posição: {i + 1}° Lugar | Quantidade de cartas em mão: {RankingFinal[i].CartasNoMonte.Count}");
             }    
         }
 
@@ -659,6 +659,21 @@ class Jogo
             {
                 arquivoLog.WriteLine(log);
             }          
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Exception: " + e.Message);
+        }
+    }
+    public void InserirLogsRanking(string log)
+    {
+        try
+        {
+            // Cria ou abre um arquivo
+            using (StreamWriter arquivoLog = new StreamWriter("C:\\Users\\filip\\OneDrive\\Documentos\\PUC\\AED\\TRABALHO FINAL - AED\\ROUBA MONTES\\ROUBA MONTES\\RankingPartida.txt", true, Encoding.UTF8))
+            {
+                arquivoLog.WriteLine(log);
+            }
         }
         catch (Exception e)
         {

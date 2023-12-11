@@ -1,0 +1,3 @@
+﻿===== RESULTADO DA PARTIDA =====
+VENCEDOR DA PARTIDA: f | Posicão: 1°Lugar | Quantidade de cartas no monte: 13
+Jogador: p | Posição: 2° Lugar | Quantidade de cartas em mão: 2

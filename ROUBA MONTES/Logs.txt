@@ -1,25 +1,166 @@
-﻿Iniciando um novo jogo.
-Baralho criado e embaralhado
-Jogo criado com 2 baralho(s).
-Jogadores da partida: 
-- yuri
-- pedro
-- filipe
-Baralho inserido no monte de compras!
-Quantidade de cartas no jogo: 104
-Carta da vez iniciada!
-Novo jogo criado!
-yuri | Carta da vez: 2♠
+﻿
 ROUBA MONTES - LOGS
 Iniciando um novo jogo.
 Baralho criado e embaralhado
-Jogo criado com 2 baralho(s).
+Jogo criado com 1 baralho(s).
 Jogadores da partida: 
-- YURI
-- FILIPE
-- PEDRO
+- Pedro Rocha
+- Filipe Ferreira
 Baralho inserido no monte de compras!
-Quantidade de cartas no jogo: 104
+Quantidade de cartas no jogo: 52
 Carta da vez iniciada!
 Novo jogo criado!
-YURI | Carta da vez: 7♣
+Pedro Rocha | Carta da vez: K♣
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: Q♥
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: Q♦
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: 9♠
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 8♥
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: A♦
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 9♣
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 5♥
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: 10♥
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: Q♠
+Filipe Ferreira | Carta da vez: 3♣
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: K♥
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: K♠
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 2♣
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: 7♣
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 2♠
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 6♦
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: 8♣
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 6♥
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 4♣
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: 10♠
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: 8♠
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: A♣
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: 3♦
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: 7♦
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: 7♥
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 3♠
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: 5♠
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: 4♦
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: 5♦
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 9♦
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: A♥
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 10♦
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: J♥
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 4♠
+Filipe Ferreira | Carta da vez: 2♦
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: 4♥
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: 10♣
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 7♠
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 2♥
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 5♣
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: K♦
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 3♥
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 8♦
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: 6♣
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: J♦
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Pedro Rocha | Carta da vez: Q♣
+Jogador Pedro Rocha descartou uma carta
+Filipe Ferreira | Carta da vez: J♣
+Filipe Ferreira | Carta da vez: 6♠
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: A♠
+Jogador Filipe Ferreira roubou a carta da area de descarte!
+Filipe Ferreira | Carta da vez: J♠
+Jogador Filipe Ferreira descartou uma carta
+Pedro Rocha | Carta da vez: 9♥
+Jogador Pedro Rocha roubou a carta da area de descarte!
+Jogador Filipe Ferreira roubou o monte do jogador Pedro Rocha
+Jogador Filipe Ferreira roubou o monte do jogador Pedro Rocha
+Jogador Filipe Ferreira roubou o monte do jogador Pedro Rocha
+Jogo Finalizado!
+===== RESULTADO DA PARTIDA =====
+VENCEDOR DA PARTIDA: Filipe Ferreira | Posicão: 1°Lugar | Quantidade de cartas no monte: 47
+Jogador: Pedro Rocha | Posição: 2° Lugar | Quantidade de cartas em mão: 2
+Ver histórico de um jogador
+Ver histórico de um jogador
+ROUBA MONTES - LOGS
+Iniciando um novo jogo.
+Baralho criado e embaralhado
+Jogo criado com 1 baralho(s).
+Jogadores da partida: 
+- p
+- f
+Baralho inserido no monte de compras!
+Quantidade de cartas no jogo: 16
+Carta da vez iniciada!
+Novo jogo criado!
+p | Carta da vez: Q♦
+Jogador p descartou uma carta
+f | Carta da vez: J♦
+Jogador f descartou uma carta
+p | Carta da vez: J♥
+Jogador p roubou a carta da area de descarte!
+p | Carta da vez: J♠
+Jogador p descartou uma carta
+f | Carta da vez: 10♣
+Jogador f descartou uma carta
+p | Carta da vez: Q♥
+Jogador p roubou a carta da area de descarte!
+p | Carta da vez: K♥
+Jogador p descartou uma carta
+f | Carta da vez: Q♣
+f | Carta da vez: K♠
+Jogador f roubou a carta da area de descarte!
+f | Carta da vez: J♣
+Jogador f roubou a carta da area de descarte!
+f | Carta da vez: 10♥
+Jogador f roubou a carta da area de descarte!
+f | Carta da vez: 10♠
+Jogador f descartou uma carta
+p | Carta da vez: K♣
+Jogador p descartou uma carta
+f | Carta da vez: K♦
+Jogador f roubou a carta da area de descarte!
+f | Carta da vez: Q♠
+Jogador f descartou uma carta
+p | Carta da vez: 10♦
+Jogador p roubou a carta da area de descarte!
+Jogador f roubou o monte do jogador p
+Jogo Finalizado!

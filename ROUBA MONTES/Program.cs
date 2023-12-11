@@ -43,6 +43,8 @@ class Program
                     Console.Write("Digite o ID do jogador que deseja ver o histórico de posições: ");
                     int idJogador = int.Parse(Console.ReadLine());
                     Jogo.ExibiRanking(idJogador);
+                    Console.WriteLine("Pressione qualquer tecla para voltar...");
+                    Console.ReadKey();
                     break;
                 default:
                     break;
